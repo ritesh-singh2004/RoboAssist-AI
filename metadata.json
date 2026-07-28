@@ -1,0 +1,6 @@
+{
+  "name": "RoboAssistAI - Industrial AI Robotics Platform",
+  "description": "Enterprise AI-powered industrial robotics platform featuring autonomous mission control, live telemetry, computer vision stream, AI Incident Commander, project builder, marketplace and deployment pipelines.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
