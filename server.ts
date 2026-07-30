@@ -1,8 +1,7 @@
-﻿import express from 'express';
+import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 
@@ -24,7 +23,13 @@ const geminiApiKey = process.env.GEMINI_API_KEY?.trim();
 console.log(`GEMINI_API_KEY loaded: ${!!geminiApiKey}`);
 
 const app = express();
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
+
+// Startup validation
+if (!geminiApiKey) {
+  console.warn('⚠️  WARNING: GEMINI_API_KEY is not set. AI features will run in fallback/demo mode.');
+  console.warn('   Set GEMINI_API_KEY in .env.local to enable live Gemini AI responses.');
+}
 
 const generatedPages = new Map<string, string>();
 
@@ -98,7 +103,7 @@ Return a JSON object with:
 - riskMitigation: string summary of safety protocols`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -135,7 +140,7 @@ Document Type Requested: ${docType} (Options: 'README', 'API Docs', 'Architectur
 Write production-grade, well-formatted Markdown for this project. Keep it extremely detailed, crisp, and clean.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
 
@@ -188,7 +193,7 @@ Return a JSON object with:
 - technicalSummary: string deep technical breakdown for site reliability & robotics engineers`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -385,7 +390,7 @@ ${conversationText}
 Provide a helpful, concise, and technically accurate reply in English.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         temperature: 0.5,
@@ -527,7 +532,7 @@ REQUIREMENTS:
 - DO NOT wrap in JSON. Output ONLY the complete raw HTML code directly.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: aiPrompt,
     });
 
@@ -642,7 +647,7 @@ ${htmlCode}
 Return only the full improved HTML document starting with <!DOCTYPE html> and closing with </html>.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
 
@@ -670,6 +675,9 @@ async function startServer() {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    // Dynamically import Vite only in development — avoids crashing in production
+    // where Vite may not be available in the bundle
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       root: path.resolve(__dirname),
       configFile: path.resolve(__dirname, 'vite.config.ts'),

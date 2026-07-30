@@ -1,8 +1,31 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 build/
 dist/
+
+# Test coverage
 coverage/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Logs
 *.log
-.env*
-!.env.example
+npm-debug.log*
+
+# Environment files — keep .env.example (it is a safe template)
+.env
+.env.local
+.env.*.local
+
+# Lock files — project uses npm, not bun
+bun.lock
+
+# AI Studio internal metadata
+metadata.json
+
+# Binary blobs accidentally pasted into source
+src/components/Pasted\ Image*
