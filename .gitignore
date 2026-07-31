@@ -29,3 +29,6 @@ metadata.json
 
 # Binary blobs accidentally pasted into source
 src/components/Pasted\ Image*
+
+# Git internal history rewrite temp files
+.git-rewrite/
