@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
         <div className="flex items-center gap-3 text-xs font-mono text-gray-400">
           <span className="text-[#0EA5E9] font-bold">INDIA v1.0</span>
           <div className="w-px h-3 bg-white/20" />
-          <span>HQ: BANGALORE</span>
+          <span>HQ: KANPUR</span>
         </div>
       </div>
 
@@ -75,7 +75,6 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
               <li><button onClick={() => setCurrentView('incident')} className="hover:text-white transition-colors">AI Incident Commander</button></li>
               <li><button onClick={() => setCurrentView('projects')} className="hover:text-white transition-colors">Project Builder</button></li>
               <li><button onClick={() => setCurrentView('deployments')} className="hover:text-white transition-colors">CI/CD Deployments</button></li>
-              <li><button onClick={() => setCurrentView('marketplace')} className="hover:text-white transition-colors">Marketplace</button></li>
             </ul>
           </div>
 
@@ -85,33 +84,84 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
             <ul className="space-y-2 text-xs">
               <li><button onClick={() => setCurrentView('docs')} className="hover:text-white transition-colors">API Documentation</button></li>
               <li><button onClick={() => setCurrentView('docs')} className="hover:text-white transition-colors">ROS2 Bridge SDK</button></li>
-              <li><button onClick={() => setCurrentView('pricing')} className="hover:text-white transition-colors">Pricing & Plans</button></li>
               <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Blog & News</a></li>
             </ul>
           </div>
 
-          {/* Company & Socials */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">Connect</h4>
-            <div className="flex items-center space-x-2 text-slate-400">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 backdrop-blur-md transition-all">
+
+            {/* Social icons */}
+            <div className="flex items-center gap-2">
+              <a href="https://github.com" target="_blank" rel="noreferrer"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 hover:border-sky-500/30 transition-all">
                 <Github className="w-4 h-4" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 backdrop-blur-md transition-all">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 hover:border-sky-500/30 transition-all">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 backdrop-blur-md transition-all">
+              <a href="https://youtube.com" target="_blank" rel="noreferrer"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 hover:border-rose-500/30 transition-all">
                 <Youtube className="w-4 h-4" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 backdrop-blur-md transition-all">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer"
+                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 hover:border-sky-400/30 transition-all">
                 <Twitter className="w-4 h-4" />
               </a>
             </div>
-            <p className="text-[11px] text-slate-400 mt-2 font-mono">
-              Support: contact@roboassist.ai<br />
-              Location: Mumbai & Bangalore, India
-            </p>
+
+            {/* Contact cards */}
+            <div className="space-y-2 pt-1">
+
+              {/* Email */}
+              <a
+                href="mailto:roboticsdevelopindia@gmail.com"
+                className="group flex items-start gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-sky-500/10 border border-white/8 hover:border-sky-500/30 transition-all duration-200"
+              >
+                <div className="w-7 h-7 rounded-lg bg-sky-500/15 border border-sky-500/25 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-sky-500/25 transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-sky-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Email</p>
+                  <p className="text-[10px] text-slate-300 group-hover:text-sky-300 transition-colors font-mono whitespace-nowrap leading-tight">
+                    roboticsdevelopindia@gmail.com
+                  </p>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a
+                href="tel:+919199326333"
+                className="group flex items-start gap-3 p-2.5 rounded-xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/8 hover:border-emerald-500/30 transition-all duration-200"
+              >
+                <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-emerald-500/25 transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Phone</p>
+                  <p className="text-[11px] text-slate-300 group-hover:text-emerald-300 transition-colors font-mono">
+                    +91 9199326333
+                  </p>
+                </div>
+              </a>
+
+              {/* Address */}
+              <div className="group flex items-start gap-3 p-2.5 rounded-xl bg-white/[0.03] border border-white/8">
+                <div className="w-7 h-7 rounded-lg bg-violet-500/15 border border-violet-500/25 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-violet-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Address</p>
+                  <p className="text-[11px] text-slate-300 leading-relaxed">
+                    Triveni Apartment,<br />
+                    Near ESI Hospital, India
+                  </p>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>

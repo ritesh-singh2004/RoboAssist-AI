@@ -211,9 +211,14 @@ export const FleetDashboard: React.FC<FleetDashboardProps> = ({
   };
 
   const handleEmergencyStop = () => {
-    setEStopTriggered(true);
-    showToast('Emergency stop initiated for selected robot.');
-    onTriggerEmergencyStop(robot.id);
+    const nextState = !eStopTriggered;
+    setEStopTriggered(nextState);
+    if (nextState) {
+      showToast('Emergency stop initiated for selected robot.');
+      onTriggerEmergencyStop(robot.id);
+    } else {
+      showToast('Emergency stop disengaged. System back online.');
+    }
   };
 
   return (

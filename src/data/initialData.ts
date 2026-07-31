@@ -40,6 +40,7 @@ export const INITIAL_ROBOTS: Robot[] = [
     tempCelsius: 39,
     locationSector: 'Assembly Bay 2 - Gigafactory',
     coordinates: { lat: 19.080, lng: 72.8800 },
+    cameraStreamUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80',
     sensors: {
       lidarPoints: 240000,
       gasDetectionPpm: 0,
@@ -58,12 +59,13 @@ export const INITIAL_ROBOTS: Robot[] = [
     modelCode: 'ROBO-ARM-6DOF',
     type: 'Industrial Robotic Arm',
     status: 'In Mission',
-    batteryPercent: 100, // Grid Powered
+    batteryPercent: 100,
     cpuPercent: 55,
     gpuPercent: 78,
     tempCelsius: 52,
     locationSector: 'Precision Machining Line A',
     coordinates: { lat: 19.074, lng: 72.8750 },
+    cameraStreamUrl: 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=1200&q=80',
     activeMissionId: 'mis-102',
     sensors: {
       lidarPoints: 45000,
@@ -86,6 +88,7 @@ export const INITIAL_ROBOTS: Robot[] = [
     tempCelsius: 35,
     locationSector: 'Mining Substation 9',
     coordinates: { lat: 19.082, lng: 72.8850 },
+    cameraStreamUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&w=1200&q=80',
     sensors: {
       lidarPoints: 180000,
       gasDetectionPpm: 35,
@@ -107,6 +110,7 @@ export const INITIAL_ROBOTS: Robot[] = [
     tempCelsius: 31,
     locationSector: 'Roof Dock Alpha - Solar Array',
     coordinates: { lat: 19.070, lng: 72.8700 },
+    cameraStreamUrl: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=80',
     sensors: {
       lidarPoints: 95000,
       gasDetectionPpm: 0,

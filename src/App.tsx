@@ -24,7 +24,7 @@ import { SecurityWorkspace } from './components/SecurityWorkspace';
 import { LLMStudio } from './components/LLMStudio';
 import { APIPlatform } from './components/APIPlatform';
 import { AiChatbot } from './components/AiChatbot';
-import { PricingSection } from './components/PricingSection';
+
 import { DocsAndBlog } from './components/DocsAndBlog';
 import { Footer } from './components/Footer';
 
@@ -531,16 +531,12 @@ export default function App() {
             <IndustriesGrid />
             <FeaturesShowcase />
             <FlowDiagram />
-            <PricingSection
-              onSelectPlan={(plan, price) => {
-                setShowDemoModal(true);
-              }}
-            />
+
           </div>
         )}
 
         {/* Auth Gate for Protected Views */}
-        {!isLoggedIn && currentView !== 'landing' && currentView !== 'pricing' && currentView !== 'docs' ? (
+        {!isLoggedIn && currentView !== 'landing' && currentView !== 'docs' ? (
           <div className="p-12 text-center bg-white/5 border border-purple-500/30 rounded-3xl backdrop-blur-2xl max-w-2xl mx-auto my-12 space-y-6 shadow-2xl">
             <div className="w-16 h-16 mx-auto rounded-3xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
               <Shield className="w-8 h-8" />
@@ -616,13 +612,7 @@ export default function App() {
               />
             )}
 
-            {currentView === 'marketplace' && (
-              <Marketplace
-                items={marketplaceItems}
-                onInstallItem={handleInstallMarketplaceItem}
-                onPublishNewItem={handlePublishMarketplaceItem}
-              />
-            )}
+
 
             {currentView === 'admin' && (
               <AdminPanel
@@ -650,7 +640,7 @@ export default function App() {
 
             {currentView === 'web-studio' && <WebStudio />}
 
-            {currentView === 'code-workspace' && <CodeWorkspace />}
+
             {currentView === 'model-registry' && <ModelRegistry onOpenLLMStudio={() => setCurrentView('llm-studio')} />}
             {currentView === 'llm-studio' && <LLMStudio />}
             {currentView === 'api-platform' && <APIPlatform />}
@@ -660,13 +650,7 @@ export default function App() {
 
             {currentView === 'ai-chat' && <AiChatbot />}
 
-            {currentView === 'pricing' && (
-              <PricingSection
-                onSelectPlan={(plan, price) => {
-                  setShowDemoModal(true);
-                }}
-              />
-            )}
+
 
             {currentView === 'docs' && <DocsAndBlog />}
           </>
