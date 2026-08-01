@@ -135,7 +135,7 @@ export const AiChatbot: React.FC = () => {
       });
 
       const data = await res.json();
-      const aiReplyText = data.success && data.reply ? data.reply : 'Sorry, I ran into an issue connecting to the AI engine.';
+      const aiReplyText = data.success && data.reply ? data.reply : `Sorry, I ran into an issue connecting to the AI engine. ${data.error || ''}`.trim();
 
       const assistantMsg: ChatMessage = {
         id: `ai-${Date.now()}`,

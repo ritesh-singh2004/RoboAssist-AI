@@ -20,7 +20,9 @@ const loadEnvironment = () => {
 
 loadEnvironment();
 const geminiApiKey = process.env.GEMINI_API_KEY?.trim();
+const geminiModel = process.env.GEMINI_MODEL?.trim() || 'gemini-3.6-flash';
 console.log(`GEMINI_API_KEY loaded: ${!!geminiApiKey}`);
+console.log(`Gemini model set to: ${geminiModel}`);
 
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000', 10);
@@ -390,7 +392,7 @@ ${conversationText}
 Provide a helpful, concise, and technically accurate reply in English.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: {
         temperature: 0.5,
