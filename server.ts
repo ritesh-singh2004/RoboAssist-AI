@@ -105,7 +105,7 @@ Return a JSON object with:
 - riskMitigation: string summary of safety protocols`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -142,7 +142,7 @@ Document Type Requested: ${docType} (Options: 'README', 'API Docs', 'Architectur
 Write production-grade, well-formatted Markdown for this project. Keep it extremely detailed, crisp, and clean.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
     });
 
@@ -195,7 +195,7 @@ Return a JSON object with:
 - technicalSummary: string deep technical breakdown for site reliability & robotics engineers`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -534,7 +534,7 @@ REQUIREMENTS:
 - DO NOT wrap in JSON. Output ONLY the complete raw HTML code directly.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: aiPrompt,
     });
 
@@ -649,7 +649,7 @@ ${htmlCode}
 Return only the full improved HTML document starting with <!DOCTYPE html> and closing with </html>.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
     });
 

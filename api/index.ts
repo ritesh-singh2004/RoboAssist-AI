@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json({ limit: '10mb' }) as any);
 
 const geminiApiKey = process.env.GEMINI_API_KEY?.trim();
+const geminiModel = process.env.GEMINI_MODEL?.trim() || 'gemini-3.6-flash';
 
 const ai = new GoogleGenAI({
   apiKey: geminiApiKey || '',
@@ -38,7 +39,7 @@ app.get('/api/health', (_req, res) => {
     status: 'online',
     system: 'RoboAssistAI Cloud Engine v4.2',
     timestamp: new Date().toISOString(),
-    aiEngine: geminiApiKey ? 'Connected (Gemini 2.0 Flash)' : 'Offline (Simulated)',
+    aiEngine: geminiApiKey ? `Connected (${geminiModel})` : 'Offline (Simulated)',
     geminiConfigured: !!geminiApiKey,
   });
 });
@@ -69,7 +70,7 @@ ${conversationText}
 Provide a helpful, concise, and technically accurate reply.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: { temperature: 0.5, topP: 0.9, responseMimeType: 'text/plain' },
     });
@@ -148,7 +149,7 @@ Project: ${projectName} | Robot: ${robotType} | Mission: ${mission}
 Description: ${description}
 Write production-grade, well-formatted Markdown.`;
 
-    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: geminiModel, contents: prompt });
     res.json({ success: true, content: response.text });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message || 'Failed to generate docs' });
@@ -178,7 +179,7 @@ app.post('/api/ai/analyze-incident', async (req, res) => {
 Return JSON: facts[], hypotheses[], actionItems[{text,assignee}], executiveSummary, technicalSummary`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: { responseMimeType: 'application/json' },
     });
@@ -205,7 +206,7 @@ app.post('/api/ai/generate-website', async (req, res) => {
     }
 
     const aiPrompt = `Generate a complete, modern single-file HTML/CSS/JS web app for: "${prompt}". Title: ${requestedTitle}. Use Tailwind CDN. Output ONLY raw HTML starting with <!DOCTYPE html>.`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: aiPrompt });
+    const response = await ai.models.generateContent({ model: geminiModel, contents: aiPrompt });
 
     let htmlCode = (response.text || '').replace(/^```html\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '').trim();
     const titleMatch = htmlCode.match(/<title>(.*?)<\/title>/i);
@@ -240,7 +241,7 @@ app.post('/api/ai/improve-website', async (req, res) => {
     }
 
     const prompt = `Improve this HTML page per the instruction: "${instruction}"\n\nHTML:\n${htmlCode}\n\nReturn only the full improved HTML starting with <!DOCTYPE html>.`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: geminiModel, contents: prompt });
     let improved = (response.text || '').replace(/^```html\s*/i, '').replace(/\s*```$/i, '').trim();
     res.json({ success: true, htmlCode: improved || htmlCode, suggestedTitle: title || 'Improved App' });
   } catch (error: any) {
