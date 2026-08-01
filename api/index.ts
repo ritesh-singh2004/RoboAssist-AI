@@ -120,7 +120,7 @@ Design a detailed autonomous mission plan for:
 Return JSON with: missionTitle, steps (array of 5), estimatedDurationMins, safetyProtocolScore (90-100), recommendedSensors, riskMitigation`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: geminiModel,
       contents: prompt,
       config: { responseMimeType: 'application/json' },
     });
